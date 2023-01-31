@@ -2,7 +2,7 @@ VERSION 1.0 CLASS
 BEGIN
   MultiUse = -1  'True
 END
-Attribute VB_Name = "Form_Форма добавление или удаления полей"
+Attribute VB_Name = "Form_Р¤РѕСЂРјР° РґРѕР±Р°РІР»РµРЅРёРµ РёР»Рё СѓРґР°Р»РµРЅРёСЏ РїРѕР»РµР№"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = True
@@ -16,28 +16,28 @@ Private Sub Ctl_addbtn_Click()
     
         Set tdf = dbs.TableDefs(tables.Value)
         Select Case newtype.Value
-            Case "Текстовый"
+            Case "РўРµРєСЃС‚РѕРІС‹Р№"
                 Set fld = tdf.CreateField(Me.newname, dbText)
-            Case "Числовой"
+            Case "Р§РёСЃР»РѕРІРѕР№"
                 Set fld = tdf.CreateField(Me.newname, dbLong)
-            Case "Дата/время"
+            Case "Р”Р°С‚Р°/РІСЂРµРјСЏ"
                 Set fld = tdf.CreateField(Me.newname, dbDate)
-            Case "Денежный"
+            Case "Р”РµРЅРµР¶РЅС‹Р№"
                 Set fld = tdf.CreateField(Me.newname, dbDecimal)
-            Case "Логический"
+            Case "Р›РѕРіРёС‡РµСЃРєРёР№"
                 Set fld = tdf.CreateField(Me.newname, dbBoolean)
-            Case "Поле MEMO"
+            Case "РџРѕР»Рµ MEMO"
                 Set fld = tdf.CreateField(Me.newname, dbMemo)
         End Select
         
         On Error Resume Next
         tdf.Fields.Append fld
-        If Err.Number = 3191 Then MsgBox "Поле с таким именем уже существует!"
+        If Err.Number = 3191 Then MsgBox "РџРѕР»Рµ СЃ С‚Р°РєРёРј РёРјРµРЅРµРј СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚!"
         Err.Clear
 
         tdf.Fields.Refresh
         newname = ""
-        newtype = "Текстовый"
+        newtype = "РўРµРєСЃС‚РѕРІС‹Р№"
         
         Dim StrTable As String
         StrTable = [tables]
@@ -48,7 +48,7 @@ Private Sub Ctl_addbtn_Click()
             DoCmd.OpenTable tables.Value, acViewNormal
         End If
         
-    Else: MsgBox "Поля не заполнены или не выбрана таблица!"
+    Else: MsgBox "РџРѕР»СЏ РЅРµ Р·Р°РїРѕР»РЅРµРЅС‹ РёР»Рё РЅРµ РІС‹Р±СЂР°РЅР° С‚Р°Р±Р»РёС†Р°!"
     End If
     
 End Sub
@@ -60,9 +60,9 @@ Private Sub Ctl_deletebtn_Click()
     Set dbs = CurrentDb
     Set tdf = dbs.TableDefs(tables.Value)
      
-    Msg = "Вы действительно хотите удалить поле " + deletename.Value + "?"
+    Msg = Р’С‹ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ С…РѕС‚РёС‚Рµ СѓРґР°Р»РёС‚СЊ РїРѕР»Рµ " + deletename.Value + "?"
     Style = vbYesNo + vbCritical + vbDefaultButton2
-    Title = "Удаление поля"
+    Title = "РЈРґР°Р»РµРЅРёРµ РїРѕР»СЏ"
     Help = "DEMO.HLP"
     Ctxt = 1000
     Response = MsgBox(Msg, Style, Title, Help, Ctxt)
@@ -70,7 +70,7 @@ Private Sub Ctl_deletebtn_Click()
     If Response = vbYes Then
         On Error Resume Next
         tdf.Fields.Delete (Me.deletename.Value)
-        If Err.Number = 3280 Then MsgBox "Невозможно удалить ключевое поле!"
+        If Err.Number = 3280 Then MsgBox "РќРµРІРѕР·РјРѕР¶РЅРѕ СѓРґР°Р»РёС‚СЊ РєР»СЋС‡РµРІРѕРµ РїРѕР»Рµ!"
         tdf.Fields.Refresh
                 
         Dim StrTable As String
@@ -96,51 +96,51 @@ Private Sub tables_DblClick(Cancel As Integer)
     DoCmd.OpenTable tables.Value, acViewNormal
 End Sub
 
-Private Sub Кнопка25_Click()
-On Error GoTo Err_Кнопка25_Click
+                  Private Sub button_25_Click()
+                    On Error GoTo Err_buttion25_Click
 
 
     If Me.Dirty Then Me.Dirty = False
     DoCmd.Close
 
-Exit_Кнопка25_Click:
+                      Exit_button25_Click:
     Exit Sub
 
-Err_Кнопка25_Click:
+                        Err_button25_Click:
     MsgBox Err.Description
-    Resume Exit_Кнопка25_Click
+                        Resume Exit_button25_Click
     
 End Sub
-Private Sub Кнопка26_Click()
-On Error GoTo Err_Кнопка26_Click
+                      Private Sub button26_Click()
+                        On Error GoTo Err_button26_Click
 
 
     DoCmd.Close
 
-Exit_Кнопка26_Click:
+                        Exit_button26_Click:
     Exit Sub
 
-Err_Кнопка26_Click:
+                          Err_button26_Click:
     MsgBox Err.Description
-    Resume Exit_Кнопка26_Click
+                          Resume Exit_button26_Click
     
 End Sub
-Private Sub Кнопка27_Click()
-On Error GoTo Err_Кнопка27_Click
+                        Private Sub button27_Click()
+                          On Error GoTo Err_button27_Click
 
 
     DoCmd.Close
 
-Exit_Кнопка27_Click:
+                          Exit_button27_Click:
     Exit Sub
 
-Err_Кнопка27_Click:
+                            Err_button27_Click:
     MsgBox Err.Description
-    Resume Exit_Кнопка27_Click
+                            Resume Exit_button27_Click
     
 End Sub
-Private Sub Кнопка28_Click()
-On Error GoTo Err_Кнопка28_Click
+                          Private Sub button28_Click()
+                            On Error GoTo Err_button28_Click
 
     Dim stDocName As String
     Dim stLinkCriteria As String
@@ -148,12 +148,12 @@ On Error GoTo Err_Кнопка28_Click
     stDocName = ChrW(53) & ChrW(53) & ChrW(32) & ChrW(1052) & ChrW(1069) & ChrW(1048) & ChrW(1053)
     DoCmd.OpenForm stDocName, , , stLinkCriteria
 
-Exit_Кнопка28_Click:
+                            Exit_button28_Click:
     Exit Sub
 
-Err_Кнопка28_Click:
+                              Err_button28_Click:
     MsgBox Err.Description
-    Resume Exit_Кнопка28_Click
+                              Resume Exit_button28_Click
     
 End Sub
 
